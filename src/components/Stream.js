@@ -1,13 +1,18 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function Stream({ tracks = [] }) {
-	return (
-		<div>
-		{ tracks.map(function(track, key) {
-			return <div className='track' key={key}>{ track.title }</div>
-		})}
-		</div>
-	);
-}
+const Stream = ({ tracks = [] }) => (
+	<div>
+	{ tracks.map(function(track, key) {
+		return <div className='track' key={key}>{ track.title }</div>
+	})}
+	</div>
+);
 
-export default Stream;
+const mapStateToProps = (state) => {
+	return {
+		tracks: state.tracks
+	};
+};
+
+export default connect(mapStateToProps)(Stream);
